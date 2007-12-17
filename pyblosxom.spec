@@ -12,7 +12,6 @@ Source0:	http://prdownloads.sourceforge.net/pyblosxom/%{name}-%{version}.tar.bz2
 Source1:    %{name}.apache.bz2
 Patch0:     %{name}.config.patch
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	python-devel >= 2.2
 Requires:   webserver
 %description
