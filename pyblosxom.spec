@@ -60,7 +60,7 @@ rm -rf %buildroot
 %files
 %defattr(0644,root,root,0755)
 %doc  INSTALL  LICENSE docs/* README
-%{_libdir}/python*/site-packages/Pyblosxom
+%{py_platsitedir}/Pyblosxom
 %{_datadir}/%{name}-%{version}/
 /var/www/%{name}/
 %attr(0755,root,root) /var/www/%{name}/*.cgi
