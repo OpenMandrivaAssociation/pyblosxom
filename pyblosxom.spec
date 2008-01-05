@@ -1,5 +1,5 @@
 %define name    pyblosxom
-%define version 1.2.1
+%define version 1.3.2
 
 Summary:	Pyblosxom is a python clone of Blosxom, a blogging system
 Name:		%name
@@ -17,7 +17,7 @@ BuildRequires:	python-devel >= 2.2
 Requires:   webserver
 %description
 Pyblogsxom is a clone of the original Bloxsom.
-It is fully compatible with it , and allows you 
+It is fully compatible with it , and allows you
 to publish easily your weblog on your apache webserver.
 
 %prep
@@ -50,10 +50,10 @@ perl -pi -e "s#py\['datadir'\].*#py['datadir'] = \"/var/pyblosxom/\"# "  %{build
 rm -rf %buildroot
 
 
-%post 
+%post
 %{_initrddir}/httpd reload
 
-%postun 
+%postun
 %{_initrddir}/httpd reload
 
 
@@ -68,4 +68,4 @@ rm -rf %buildroot
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 %config(noreplace) %{_sysconfdir}/%{name}/config.py
 %dir  %{_sysconfdir}/%{name}/
-
+%{py_platsitedir}/%{name}-%{version}-py2.5.egg-info
