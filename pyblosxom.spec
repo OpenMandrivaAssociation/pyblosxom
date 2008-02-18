@@ -60,7 +60,7 @@ rm -rf %buildroot
 %files
 %defattr(0644,root,root,0755)
 %doc  INSTALL  LICENSE docs/* README
-%{py_pursitedir}/Pyblosxom
+%{py_platsitedir}/Pyblosxom
 %{_datadir}/%{name}-%{version}/
 /var/www/%{name}/
 %attr(0755,root,root) /var/www/%{name}/*.cgi
@@ -68,4 +68,4 @@ rm -rf %buildroot
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 %config(noreplace) %{_sysconfdir}/%{name}/config.py
 %dir  %{_sysconfdir}/%{name}/
-%{py_pursitedir}/%{name}-%{version}-py2.5.egg-info
+%{py_platsitedir}/%{name}-%{version}-py2.5.egg-info
