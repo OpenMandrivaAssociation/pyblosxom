@@ -4,7 +4,7 @@
 Summary:	Python clone of Blosxom, a blogging system
 Name:		%name
 Version:	%version
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPL
 Group:		Networking/WWW
 Url:        http://pyblosxom.sourceforge.net/
