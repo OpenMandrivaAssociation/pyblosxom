@@ -1,10 +1,10 @@
 %define name    pyblosxom
-%define version 1.3.2
+%define version 1.4.3
 
 Summary:	Python clone of Blosxom, a blogging system
 Name:		%name
 Version:	%version
-Release:	%mkrel 3
+Release:	%mkrel 1
 License:	GPL
 Group:		Networking/WWW
 Url:        http://pyblosxom.sourceforge.net/
@@ -69,3 +69,4 @@ rm -rf %buildroot
 %config(noreplace) %{_sysconfdir}/%{name}/config.py
 %dir  %{_sysconfdir}/%{name}/
 %{py_platsitedir}/%{name}-%{version}-py2.5.egg-info
+%{_bindir}/pyblcmd
