@@ -70,3 +70,4 @@ rm -rf %buildroot
 %dir  %{_sysconfdir}/%{name}/
 %{py_platsitedir}/%{name}-%{version}-py2.5.egg-info
 %{_bindir}/pyblcmd
+%{py_puresitedir}/Pyblosxom
