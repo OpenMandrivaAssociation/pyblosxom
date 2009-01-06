@@ -67,6 +67,6 @@ rm -rf %buildroot
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
 %config(noreplace) %{_sysconfdir}/%{name}/config.py
 %dir  %{_sysconfdir}/%{name}/
-%{py_puresitedir}/%{name}-%{version}-py2.5.egg-info
+%{py_puresitedir}/%{name}-%{version}-py%{py_ver}.egg-info
 %{_bindir}/pyblcmd
 %{py_puresitedir}/Pyblosxom/*
