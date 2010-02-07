@@ -4,17 +4,22 @@
 Summary:	Python clone of Blosxom, a blogging system
 Name:		%name
 Version:	%version
-Release:	%mkrel 2
+Release:	%mkrel 3
 License:	GPL
 Group:		Networking/WWW
 Url:        http://pyblosxom.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/pyblosxom/%{name}-%{version}.tar.bz2
 Source1:    %{name}.apache.bz2
 Patch0:     %{name}.config.patch
-BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:	python-devel >= 2.2
 Requires:   webserver
+%if %mdkversion < 201010
+Requires(post):   rpm-helper
+Requires(postun):   rpm-helper
+%endif
+BuildArch:	noarch
+BuildRoot:	%{_tmppath}/%{name}-%{version}
+
 %description
 Pyblogsxom is a clone of the original Bloxsom.
 It is fully compatible with it , and allows you
@@ -49,12 +54,15 @@ perl -pi -e "s#py\['datadir'\].*#py['datadir'] = \"/var/pyblosxom/\"# "  %{build
 %clean
 rm -rf %buildroot
 
-
 %post
-%{_initrddir}/httpd reload
+%if %mdkversion < 201010
+%_post_webapp
+%endif
 
 %postun
-%{_initrddir}/httpd reload
+%if %mdkversion < 201010
+%_postun_webapp
+%endif
 
 
 %files
