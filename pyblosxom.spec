@@ -9,7 +9,6 @@ License:	GPL
 Group:		Networking/WWW
 Url:        http://pyblosxom.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/pyblosxom/%{name}-%{version}.tar.bz2
-Source1:    %{name}.apache.bz2
 Patch0:     %{name}.config.patch
 BuildRequires:	python-devel >= 2.2
 Requires:   webserver
@@ -40,7 +39,19 @@ python setup.py install --root="%{buildroot}"
 mkdir -p %{buildroot}/%{_sysconfdir}/httpd/conf/webapps.d
 mkdir -p %{buildroot}/%{_sysconfdir}/%{name}
 
-bunzip2 -c %SOURCE1 > %{buildroot}/%{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
+# apache configuration
+install -d -m 755 %{buildroot}%{webappconfdir}
+cat > %{buildroot}%{webappconfdir}/%{name}.conf << EOF
+Alias /pyblosxom /var/www/pyblosxom
+
+<Directory /var/www/pyblosxom>
+    Options +ExecCGI
+    Order allow,deny
+    Allow from all
+    DirectoryIndex pyblosxom.cgi
+</Directory>
+EOF
+
 
 mkdir -p %{buildroot}/var/www/%{name}
 mv %{buildroot}/%{_datadir}/%{name}-%{version}/web/* %{buildroot}/var/www/%{name}
