@@ -1,0 +1,11 @@
+--- pyblosxom-1.4.3/web/pyblosxom.cgi.orig	2007-07-25 23:33:39.000000000 +0200
++++ pyblosxom-1.4.3/web/pyblosxom.cgi	2009-01-06 16:59:13.000000000 +0100
+@@ -6,6 +6,8 @@
+ 
+ # Uncomment this if something goes wrong (for debugging)
+ #import cgitb; cgitb.enable()
++import sys
++sys.path.append('/etc/pyblosxom/')
+ 
+ 
+ # Don't touch anything below this line
