@@ -1,10 +1,7 @@
-%define name    pyblosxom
-%define version 1.4.3
-
 Summary:	Python clone of Blosxom, a blogging system
-Name:		%name
-Version:	%version
-Release:	%mkrel 3
+Name:		pyblosxom
+Version:	1.4.3
+Release:	4
 License:	GPL
 Group:		Networking/WWW
 Url:        http://pyblosxom.sourceforge.net/
@@ -12,12 +9,7 @@ Source0:	http://prdownloads.sourceforge.net/pyblosxom/%{name}-%{version}.tar.bz2
 Patch0:     %{name}.config.patch
 BuildRequires:	python-devel >= 2.2
 Requires:   webserver
-%if %mdkversion < 201010
-Requires(post):   rpm-helper
-Requires(postun):   rpm-helper
-%endif
 BuildArch:	noarch
-BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 Pyblogsxom is a clone of the original Bloxsom.
@@ -33,7 +25,6 @@ CFLAGS="%{optflags}" python setup.py build
 
 
 %install
-rm -rf %buildroot
 python setup.py install --root="%{buildroot}"
 
 mkdir -p %{buildroot}/%{_sysconfdir}/httpd/conf/webapps.d
@@ -62,25 +53,11 @@ mv %{buildroot}/var/www/%{name}/config.py  %{buildroot}/%{_sysconfdir}/%{name}
 
 perl -pi -e "s#py\['datadir'\].*#py['datadir'] = \"/var/pyblosxom/\"# "  %{buildroot}/%{_sysconfdir}/%{name}/config.py
 
-%clean
-rm -rf %buildroot
-
-%post
-%if %mdkversion < 201010
-%_post_webapp
-%endif
-
-%postun
-%if %mdkversion < 201010
-%_postun_webapp
-%endif
-
-
 %files
 %defattr(0644,root,root,0755)
 %doc  INSTALL  LICENSE docs/* README
 %{_datadir}/%{name}-%{version}/
-/var/www/%{name}/
+/var/www/%{name}/*.tac
 %attr(0755,root,root) /var/www/%{name}/*.cgi
 %dir /var/%{name}/
 %config(noreplace) %{_sysconfdir}/httpd/conf/webapps.d/%{name}.conf
@@ -89,3 +66,64 @@ rm -rf %buildroot
 %{py_puresitedir}/%{name}-%{version}-py%{py_ver}.egg-info
 %{_bindir}/pyblcmd
 %{py_puresitedir}/Pyblosxom/*
+
+
+%changelog
+* Sun Feb 07 2010 Guillaume Rousse <guillomovitch@mandriva.org> 1.4.3-3mdv2010.1
++ Revision: 501735
+- use herein document for apache configuration
+- rely on filetrigger for reloading apache configuration begining with 2010.1, rpm-helper macros otherwise
+
+* Tue Sep 15 2009 Thierry Vignaud <tv@mandriva.org> 1.4.3-2mdv2010.0
++ Revision: 441982
+- rebuild
+
+* Tue Jan 06 2009 Funda Wang <fwang@mandriva.org> 1.4.3-1mdv2009.1
++ Revision: 325979
+- fix file list
+- rediff config patch
+
+* Thu Sep 04 2008 Jérôme Soyer <saispo@mandriva.org> 1.4.3-1mdv2009.0
++ Revision: 280730
+- Fix 64bits compiling
+- Fix files section
+- New release
+- Change python macro
+- Fix python macros
+- New release
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+    - fix file list
+    - rebuild
+    - fix "foobar is blabla" summary (=> "blabla") so that it looks nice in rpmdrake
+    - kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+
+* Sat Aug 13 2005 Michael Scherer <misc@mandriva.org> 1.2.1-1mdk
+- 1.2.1
+- fix apache config file location
+- mkrel
+
+* Sat Dec 04 2004 Michael Scherer <misc@mandrake.org> 1.0.0-3mdk
+- Rebuild for new python
+
+* Fri May 28 2004 Michael Scherer <misc@mandrake.org> 1.0.0-2mdk 
+- [DIRM]
+
+* Tue May 25 2004 Michael Scherer <misc@mandrake.org> 1.0.0-1mdk
+- New release 1.0.0
+- rpmbuildupdate aware
+
+* Mon Mar 22 2004 Michael Scherer <misc@mandrake.org> 0.9-2mdk
+- fix perm on files
+
+* Fri Mar 19 2004 Michael Scherer <misc@mandrake.org> 0.9-1mdk
+- 0.9
+
+* Mon Jan 26 2004 Michael Scherer <misc@mandrake.org> 0.8.1-1mdk
+- First mandrake package
+
