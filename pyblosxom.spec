@@ -1,7 +1,7 @@
 Summary:	Python clone of Blosxom, a blogging system
 Name:		pyblosxom
 Version:	1.4.3
-Release:	4
+Release:	5
 License:	GPL
 Group:		Networking/WWW
 Url:        http://pyblosxom.sourceforge.net/
@@ -31,14 +31,13 @@ mkdir -p %{buildroot}/%{_sysconfdir}/httpd/conf/webapps.d
 mkdir -p %{buildroot}/%{_sysconfdir}/%{name}
 
 # apache configuration
-install -d -m 755 %{buildroot}%{webappconfdir}
-cat > %{buildroot}%{webappconfdir}/%{name}.conf << EOF
+install -d -m 755 %{buildroot}%{_webappconfdir}
+cat > %{buildroot}%{_webappconfdir}/%{name}.conf << EOF
 Alias /pyblosxom /var/www/pyblosxom
 
 <Directory /var/www/pyblosxom>
     Options +ExecCGI
-    Order allow,deny
-    Allow from all
+    Require all granted
     DirectoryIndex pyblosxom.cgi
 </Directory>
 EOF
