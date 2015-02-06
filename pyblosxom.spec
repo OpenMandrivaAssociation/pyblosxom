@@ -1,7 +1,7 @@
 Summary:	Python clone of Blosxom, a blogging system
 Name:		pyblosxom
 Version:	1.4.3
-Release:	5
+Release:	6
 License:	GPL
 Group:		Networking/WWW
 Url:        http://pyblosxom.sourceforge.net/
