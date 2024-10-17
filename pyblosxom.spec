@@ -4,7 +4,7 @@ Version:	1.4.3
 Release:	6
 License:	GPL
 Group:		Networking/WWW
-Url:        http://pyblosxom.sourceforge.net/
+Url:        https://pyblosxom.sourceforge.net/
 Source0:	http://prdownloads.sourceforge.net/pyblosxom/%{name}-%{version}.tar.bz2
 Patch0:     %{name}.config.patch
 BuildRequires:	python-devel >= 2.2
